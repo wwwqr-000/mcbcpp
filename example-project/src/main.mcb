@@ -1,0 +1,11 @@
+function clock_60_sec {
+	say 1 minute passed...
+	REPEAT (0, 4) {
+		give @a minecraft:stick 1
+	}
+	schedule function main:clock_60_sec 60s replace
+}
+function on_load load {
+	say Thanks for installing this example datapack!
+	function main:clock_60_sec
+}
