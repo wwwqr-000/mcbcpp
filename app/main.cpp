@@ -22,10 +22,10 @@ int main() {
 
     //Check for glass_bottle in cauldron
     Function cauldron("glass_check", FunctionType::DEFAULT);
-    std::stringstream ss;
-    ss << "execute as " + itemInDistance("minecraft:glass_bottle", 10, 1) + " at " + itemInDistance("minecraft:glass_bottle", 10, 1) + " run ";
-    ss << killItem("minecraft:glass_bottle", 1, 1);
-    cauldron.add(ss.str());
+    std::vector<std::string> items;
+    items.push_back(killItem("minecraft:glass_bottle", 1, 1));
+    items.push_back("say deleted glass bottle");
+    cauldron.add("execute as " + itemInDistance("minecraft:glass_bottle", 10, 1) + " at " + itemInDistance("minecraft:glass_bottle", 10, 1) + " run " + block(items));
     cauldron.write();
     //
 

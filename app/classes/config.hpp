@@ -29,6 +29,19 @@ std::string killItem(std::string itemName, size_t distance, size_t itemCount) {
     return "kill @e[type=minecraft:item,limit=1,distance=.." + std::to_string(distance) + ",nbt={Item:{id:\"" + itemName + "\", count: " + std::to_string(itemCount) + "}}]";
 }
 
+std::string block(std::vector<std::string>& items) {
+    std::string buff = "block {\n\t\t";
+    for (std::string& s : items) {
+        buff += s;
+        buff += "\n\t\t";
+    }
+    for (int i = 0; i < 3; i++) {
+        buff.pop_back();
+    }
+    buff += "\n\t}";
+    return buff;
+}
+
 void funcWrite(std::string& name, std::vector<std::string>& contentVec, FunctionType& type) {
     std::string typeStr = "";
     switch (type) {
