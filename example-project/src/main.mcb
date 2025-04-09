@@ -1,20 +1,18 @@
-function clock_60_sec {
-	say 1 minute passed...
-	REPEAT (0, 4) {
-		give @a minecraft:stick 1
-	}
-	schedule function main:clock_60_sec 60s replace
-}
-function on_load load {
-	say Thanks for installing this example datapack!
-	function main:clock_60_sec
-}
 function glass_check {
 	execute as @e[type=minecraft:item,limit=1,distance=..10,nbt={Item:{id:"minecraft:glass_bottle", count: 1}}] at @e[type=minecraft:item,limit=1,distance=..10,nbt={Item:{id:"minecraft:glass_bottle", count: 1}}] run block {
 		kill @e[type=minecraft:item,limit=1,distance=..1,nbt={Item:{id:"minecraft:glass_bottle", count: 1}}]
 		say deleted glass bottle
 	}
 }
-function globTick tick {
+function player_tick {
+	say Hello from me!
 	function main:glass_check
+}
+function world_tick {
+	execute as @a at @s run function main:player_tick
+	schedule function main:world_tick 10t replace
+}
+function load load {
+	say Loaded!
+	function main:world_tick
 }

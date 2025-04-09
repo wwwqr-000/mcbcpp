@@ -13,12 +13,12 @@ std::string call(std::string funcName) {
     return "function main:" + funcName;
 }
 
-std::string schedule(std::string funcName, size_t delayInSeconds) {
-    return "schedule function main:" + funcName + " " + std::to_string(delayInSeconds) + "s replace";
+std::string schedule(std::string funcName, size_t delayInTicks) {
+    return "schedule function main:" + funcName + " " + std::to_string(delayInTicks) + "t replace";
 }
 
 std::string repeat(std::string command, size_t times) {
-    return "REPEAT (0, " + std::to_string(times) + ") {\n\t\t" + command + "\n\t}";
+    return "REPEAT (0, " + std::to_string(times - 1) + ") {\n\t\t" + command + "\n\t}";
 }
 
 std::string itemInDistance(std::string itemName, size_t distance, size_t itemCount) {
@@ -47,9 +47,6 @@ void funcWrite(std::string& name, std::vector<std::string>& contentVec, Function
     switch (type) {
         case FunctionType::LOAD:
             typeStr = " load";
-        break;
-        case FunctionType::TICK:
-            typeStr = " tick";
         break;
     }
     std::string buff = "function " + name + typeStr + " {\n";

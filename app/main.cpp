@@ -8,18 +8,6 @@
 #include "classes/function.hpp"
 
 int main() {
-    Function minClock("clock_60_sec", FunctionType::DEFAULT);
-    minClock.add("say 1 minute passed...");
-    minClock.add(repeat("give @a minecraft:stick 1", 4));
-    minClock.add(schedule(minClock.getName(), 60));
-    minClock.write();
-
-    Function welcome("on_load", FunctionType::LOAD);
-    welcome.add("say Thanks for installing this example datapack!");
-    welcome.add(call(minClock.getName()));
-    welcome.write();
-
-
     //Check for glass_bottle in cauldron
     Function cauldron("glass_check", FunctionType::DEFAULT);
     std::vector<std::string> items;
@@ -29,9 +17,26 @@ int main() {
     cauldron.write();
     //
 
-    Function globalTick("globTick", FunctionType::TICK);
-    globalTick.add(call(cauldron.getName()));
-    globalTick.write();
+    //Player tick
+    Function playerTick("player_tick", FunctionType::DEFAULT);
+    playerTick.add("say Hello from me!");
+    playerTick.add(call(cauldron.getName()));
+    playerTick.write();
+    //
+
+    //World tick
+    Function worldTick("world_tick", FunctionType::DEFAULT);
+    worldTick.add("execute as @a at @s run " + call(playerTick.getName()));
+    worldTick.add(schedule(worldTick.getName(), 10));
+    worldTick.write();
+    //
+
+    //Load
+    Function mainLoad("main_load", FunctionType::LOAD);
+    mainLoad.add("say Loaded!");
+    mainLoad.add(call(worldTick.getName()));
+    mainLoad.write();
+    //
 
     globalWriteFunc();
     return 0;

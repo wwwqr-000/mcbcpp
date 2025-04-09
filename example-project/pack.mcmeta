@@ -1,6 +1,6 @@
 {
-	"pack":{
-		"pack_format": 72,
-		"description": "example-project Made with MC-Build!"
-	}
+  "pack": {
+    "pack_format": 49,
+    "description": "My 1.21.4 Datapack"
+  }
 }

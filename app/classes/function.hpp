@@ -12,7 +12,15 @@ class Function {
         Function(std::string& name, FunctionType& type) : name(name), type(type) {}
         Function(std::string name, FunctionType type) : name(name), type(type) {}
 
-        void write() { funcWrite(this->name, this->contentVec, this->type); }
+        void write() {
+            std::string realName = this->name;
+            switch (this->type) {
+                case FunctionType::LOAD:
+                    realName = "load";
+                break;
+            }
+            funcWrite(realName, this->contentVec, this->type);
+        }
 
         std::string& getName() { return this->name; }
         std::vector<std::string>& getContentVec() { return this->contentVec; }
