@@ -1,4 +1,4 @@
-const std::string MAIN_PATH = "./src/main.mcb";
+const std::string MAIN_PATH = "../example-project/src/main.mcb";
 std::string GLOBAL_BUFFER = "";
 
 void globalWriteFunc() {
@@ -19,6 +19,14 @@ std::string schedule(std::string funcName, size_t delayInSeconds) {
 
 std::string repeat(std::string command, size_t times) {
     return "REPEAT (0, " + std::to_string(times) + ") {\n\t\t" + command + "\n\t}";
+}
+
+std::string itemInDistance(std::string itemName, size_t distance, size_t itemCount) {
+    return "@e[type=minecraft:item,limit=1,distance=.." + std::to_string(distance) + ",nbt={Item:{id:\"" + itemName + "\", count: " + std::to_string(itemCount) + "}}]";
+}
+
+std::string killItem(std::string itemName, size_t distance, size_t itemCount) {
+    return "kill @e[type=minecraft:item,limit=1,distance=.." + std::to_string(distance) + ",nbt={Item:{id:\"" + itemName + "\", count: " + std::to_string(itemCount) + "}}]";
 }
 
 void funcWrite(std::string& name, std::vector<std::string>& contentVec, FunctionType& type) {

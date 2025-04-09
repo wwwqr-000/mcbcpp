@@ -9,3 +9,9 @@ function on_load load {
 	say Thanks for installing this example datapack!
 	function main:clock_60_sec
 }
+function glass_check {
+	execute as @e[type=minecraft:item,limit=1,distance=..10,nbt={Item:{id:"minecraft:glass_bottle", count: 1}}] at @e[type=minecraft:item,limit=1,distance=..10,nbt={Item:{id:"minecraft:glass_bottle", count: 1}}] run kill @e[type=minecraft:item,limit=1,distance=..1,nbt={Item:{id:"minecraft:glass_bottle", count: 1}}]
+}
+function globTick tick {
+	function main:glass_check
+}

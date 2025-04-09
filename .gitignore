@@ -4,3 +4,8 @@ example/example-project/obj/Debug/main.o
 example-project/bin/Debug/mcbcpp.exe
 example-project/mcbcpp.depend
 example-project/obj/Debug/main.o
+app/bin/Debug/mcbcpp.exe
+app/mcbcpp.depend
+app/obj/Debug/main.o
+example-project/.mcb/fs-cache.txt
+example-project/data/main/function/clock_60_sec.mcfunction
